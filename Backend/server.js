@@ -1,4 +1,5 @@
 const http = require('http');
+const cors = require('cors'); // Ajout de l'import pour le module cors
 const app = require('./app');
 
 const normalizePort = val => {
@@ -12,7 +13,8 @@ const normalizePort = val => {
 	}
 	return false;
 };
-const port = normalizePort(process.env.PORT ||'5678');
+
+const port = normalizePort(process.env.PORT || '5678');
 app.set('port', port);
 
 const errorHandler = error => {
@@ -35,6 +37,8 @@ const errorHandler = error => {
 	}
 };
 
+app.use(cors()); // Ajout de l'utilisation du middleware cors
+
 const server = http.createServer(app);
 
 server.on('error', errorHandler);
@@ -45,4 +49,3 @@ server.on('listening', () => {
 });
 
 server.listen(port);
-
