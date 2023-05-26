@@ -61,7 +61,7 @@ async function main() {
     btnTous.addEventListener("click", () => {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = ""
-      displayGallery
+      displayGallery();
     })
 
     const btnObjets = document.querySelector(".btn-objets");
