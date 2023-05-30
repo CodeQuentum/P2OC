@@ -88,7 +88,6 @@ async function main() {
       displayFiltredGallery(filtreHr)
     })
   
-    // Autres actions à effectuer
   } catch (error) {
     console.error(error);
   }
