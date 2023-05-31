@@ -48,12 +48,10 @@ function displayFiltredGallery(filtre){
     gallery.appendChild(figure);
   }
 }
-async function main() {
+async function filtres() {
   try {
-    await fetchData(); // Appeler la fonction fetchData pour récupérer les données
-    
+    await fetchData(); 
 
-    // Manipulations supplémentaires des données si nécessaire
     const categories = data.map((item) => item.category.name);
     
     // recuperation des boutons crée dans le html
@@ -62,6 +60,19 @@ async function main() {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = ""
       displayGallery();
+      
+        //Changement de couleur du bouton cliqué
+
+        btnTous.style.backgroundColor= "#1D6154";
+        btnTous.style.color= "white";
+           
+        // Rétablir le style des autres boutons
+        btnAppt.style.backgroundColor = "";
+        btnAppt.style.color = "";
+        btnHr.style.backgroundColor = "";
+        btnHr.style.color = "";
+        btnObjets.style.backgroundColor = "";
+        btnObjets.style.color = "";
     })
 
     const btnObjets = document.querySelector(".btn-objets");
@@ -70,6 +81,19 @@ async function main() {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = ""
       displayFiltredGallery(filtreObjets)
+
+       //Changement de couleur du bouton cliqué
+
+       btnObjets.style.backgroundColor= "#1D6154";
+       btnObjets.style.color= "white";
+ 
+         // Rétablir le style des autres boutons
+       btnAppt.style.backgroundColor = "";
+       btnAppt.style.color = "";
+       btnHr.style.backgroundColor = "";
+       btnHr.style.color = "";
+       btnTous.style.backgroundColor = "";
+       btnTous.style.color = "";
     })
 
     const btnAppt = document.querySelector(".btn-appt");
@@ -77,8 +101,21 @@ async function main() {
     btnAppt.addEventListener("click", () => {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = ""
-      displayFiltredGallery(filtreAppt)
-    })
+      displayFiltredGallery(filtreAppt);
+
+      //Changement de couleur du bouton cliqué
+
+      btnAppt.style.backgroundColor= "#1D6154";
+      btnAppt.style.color= "white";
+
+        // Rétablir le style des autres boutons
+      btnObjets.style.backgroundColor = "";
+      btnObjets.style.color = "";
+      btnHr.style.backgroundColor = "";
+      btnHr.style.color = "";
+      btnTous.style.backgroundColor = "";
+      btnTous.style.color = "";
+    });
 
     const btnHr = document.querySelector(".btn-hr")
     const filtreHr = data.filter((item) => item.category.name === "Hotels & restaurants");
@@ -86,6 +123,19 @@ async function main() {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = ""
       displayFiltredGallery(filtreHr)
+
+       //Changement de couleur du bouton cliqué
+
+       btnHr.style.backgroundColor= "#1D6154";
+       btnHr.style.color= "white";
+ 
+         // Rétablir le style des autres boutons
+       btnAppt.style.backgroundColor = "";
+       btnAppt.style.color = "";
+       btnObjets.style.backgroundColor = "";
+       btnObjets.style.color = "";
+       btnTous.style.backgroundColor = "";
+       btnTous.style.color = "";
     })
   
   } catch (error) {
@@ -93,6 +143,6 @@ async function main() {
   }
 }
 
-main();
+filtres();
 
 
