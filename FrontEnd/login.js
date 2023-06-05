@@ -1,33 +1,30 @@
-const login = document.querySelector('input[type="submit"]');
+const form = {
+  email: document.querySelector('input[type="email"]'),
+  password: document.querySelector('input[type="password"]'),
+  submit: document.querySelector('input[type="submit"]')
+};
+console.log(form.email);
+console.log(form.password);
+console.log(form.submit);
 
-login.addEventListener("click", async (event) => {
+let button = form.submit.addEventListener("click", (event)=>{
   event.preventDefault();
+  const login = 'http://localhost:5678/api/users/login';
 
-  const email = document.querySelector('input[type="email"]').value;
-  const password = document.querySelector('input[type="password"]').value;
-
-  const url = "http://localhost:5678/api/users/login";
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const body = JSON.stringify({ email, password });
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers,
-      body,
+  fetch(login,{
+    method: "POST",
+    headers:{
+      Accept:"application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: form.email.value,
+      password: form.password.value,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => {
+      console.log(err);
     });
-
-    if (response.ok) {
-      const data = await response.json();
-      // Traitement des données de la réponse
-      console.log(data);
-    } else {
-      // Gestion des erreurs
-      console.error("Erreur lors de la requête :", response.status);
-    }
-  } catch (error) {
-    console.error("Erreur lors de la requête :", error);
-  }
 });
