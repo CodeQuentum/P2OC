@@ -65,7 +65,7 @@ input[type="password"]{
 	border: none;
 }
 
-input[type="submit"]{
+button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -73,7 +73,7 @@ input[type="submit"]{
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 form a{
     text-align: center;
