@@ -9,9 +9,9 @@ console.log(form.submit);
 
 let button = form.submit.addEventListener("click", (event)=>{
   event.preventDefault();
-  //const login = 'http://localhost:5678/api/users/login';
+  const login = 'http://localhost:5678/api/users/login';
 
-  fetch('http://localhost:5678/api/users/login',{
+  fetch(login,{
     method: "POST",
     mode: "cors",
     cache:"no-cache",
@@ -37,6 +37,7 @@ let button = form.submit.addEventListener("click", (event)=>{
       } else {
         localStorage.setItem("userId", JSON.stringify(data));
         localStorage.setItem("token", 1)
+        window.location.assign("index.html")
       }
     })
     .catch((err) => {
