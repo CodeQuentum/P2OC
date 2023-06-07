@@ -29,15 +29,12 @@ let button = form.submit.addEventListener("click", (event)=>{
     .then((data) => {
       if (data.error) {
         console.error("error", data.message);
-        document.querySelector(".error-message-all")
-        .style.display = "block";
-        document.querySelector(".error-message-all")
-        .innerText =
-        "Mots de passe ou e-mail incorect, réésayez s'il vous plait";
+        document.querySelector(".error-message-all").style.display = "block";
+        document.querySelector(".error-message-all").innerText = "Mots de passe ou e-mail incorrect, réessayez s'il vous plaît";
       } else {
         localStorage.setItem("userId", JSON.stringify(data));
-        localStorage.setItem("token", 1)
-        window.location.assign("index.html")
+        localStorage.setItem("token", 1);
+        
       }
     })
     .catch((err) => {
