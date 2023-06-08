@@ -50,6 +50,11 @@ form{
     display: flex;
     flex-direction: column;
 }
+.loginFailed{
+	display: none;
+	color: red;
+}
+
 .logs{
 	display: flex;
 	flex-direction: column;

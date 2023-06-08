@@ -3,21 +3,18 @@ const form = {
   password: document.querySelector('input[type="password"]'),
   submit: document.querySelector('button')
 };
-console.log(form.email);
-console.log(form.password);
-console.log(form.submit);
 
-let button = form.submit.addEventListener("click", (event)=>{
+let button = form.submit.addEventListener("click", (event) => {
   event.preventDefault();
   const login = 'http://localhost:5678/api/users/login';
 
-  fetch(login,{
+  fetch(login, {
     method: "POST",
     mode: "cors",
-    cache:"no-cache",
+    cache: "no-cache",
     credentials: "same-origin",
-    headers:{
-      Accept:"application/json, text/plain, */*",
+    headers: {
+      Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -25,19 +22,21 @@ let button = form.submit.addEventListener("click", (event)=>{
       password: form.password.value,
     }),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error) {
-        console.error("error", data.message);
-        document.querySelector(".error-message-all").style.display = "block";
-        document.querySelector(".error-message-all").innerText = "Mots de passe ou e-mail incorrect, réessayez s'il vous plaît";
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
       } else {
-        localStorage.setItem("userId", JSON.stringify(data));
-        localStorage.setItem("token", 1);
-        
+        throw new Error("Mots de passe ou e-mail incorrect, réessayez s'il vous plaît");
       }
     })
+    .then((data) => {
+      localStorage.setItem("userId", JSON.stringify(data.userId));
+      localStorage.setItem("token", data.token);
+      window.location.assign("index.html"); // Redirection vers la page d'accueil
+    })
     .catch((err) => {
-      console.log(err);
+      console.error("error", err.message);
+      document.querySelector(".loginFailed").style.display = "block";
+      document.querySelector(".loginFailed").innerText = err.message;
     });
 });
