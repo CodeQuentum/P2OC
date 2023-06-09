@@ -207,3 +207,55 @@ footer nav ul {
 	width: 100%;
 }
 
+/****** CSS ADMIN *****/
+.black-bar {
+	background-color: black;
+	height: 50px;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999;	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  .logo-container {
+	display: flex;
+	align-items: center;
+  }
+  .black-bar .fa-pen-to-square{
+	display: flex;
+	flex-direction: row;
+  }
+  .logo-container i,
+  .logo-container span {
+	margin-right: 10px;
+  }
+  .black-bar p {
+	margin: 0 10px;
+  }
+  
+  .black-bar button {
+	margin-left: 10px;
+	font-family: 'Syne';
+	font-weight: 400;
+	color: black;
+	background-color: white;
+	width: 216px;
+	height: 38px;
+	text-align: center;
+	border-radius: 60px ;
+  }
+  .fa-pen-to-square p{
+	font-family: 'Work Sans';
+  }
+.black-bar .fa-pen-to-square{
+	color: white;
+}
+  h2 span, h2 .fa-pen-to-square{
+	color: black;
+	font-size: small;
+	font-family: 'Work Sans';
+  }
+

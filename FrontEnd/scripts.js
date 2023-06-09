@@ -1,3 +1,12 @@
+let projets = document.querySelector('.clear');
+projets.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (confirm('Êtes-vous sûr de vouloir vider le stockage local ?')) {
+    localStorage.clear();
+    console.log('Stockage local vidé');
+  }
+});
+
 let data = [];
 
 async function fetchData() {
@@ -144,5 +153,3 @@ async function filtres() {
 }
 
 filtres();
-
-
