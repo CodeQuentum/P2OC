@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     buttonPost.type ="button";
     buttonPost.innerHTML ="publier les changements";
     buttonPost.className ="btnPost";
+
     // Insérer dans la barre noire
     blackBar.appendChild(logoContainer);
     blackBar.appendChild(logoElementUn);
@@ -28,27 +29,42 @@ document.addEventListener('DOMContentLoaded', function() {
     blackBar.appendChild(buttonPost);
     // Insérer la barre noire au début du corps du document
     document.body.prepend(blackBar);
+
     // Inserer le logo stylot et le mot sous la photo
     const introModif = document.querySelector('#introduction figure')
     const divModifUn = document.createElement('div');
     divModifUn.className = 'divModifUn';
     const logoElementDeux = createModifierLogo();
-    const modifText = document.createElement('p');
-    modifText.innerText ="modifier";
+    const modifText = document.createElement('a');
+    modifText.innerHTML = '<a href="#modal" class="js-modal">Modifier</a>';  
     divModifUn.appendChild(logoElementDeux);
     divModifUn.appendChild(modifText);
     introModif.appendChild(divModifUn);
+
     // Inserer le logo stylo et le mot a coté du titre projet
     const sectionPortfolio = document.querySelector('#portfolio')
     const projetTitre = document.querySelector('#portfolio h2');
     const spanModif = document.createElement('span');
     spanModif.className = 'spanModif';
     const logoElementTrois = createModifierLogo();
-    const modifText2 = document.createElement('p');
-    modifText2.innerText = 'modifier';
+    const modifText2 = document.createElement('a');
+    modifText2.innerHTML = '<a href="#modal" class="js-modal">Modifier</a>';
     sectionPortfolio.appendChild(spanModif);
     spanModif.appendChild(logoElementTrois);
     spanModif.appendChild(modifText2);
     projetTitre.appendChild(spanModif);
   }
+
+  // Generer le contenu de la modale
+  const jsModale = document.querySelectorAll(".js-modal");
+  const modale = document.getElementById("modale");
+  console.log(modale);
+  function openModale(){
+    modale.classList.add('active');
+  }
+  jsModale.forEach(function(element) {
+    element.addEventListener('click', function(event) {
+      event.preventDefault();
+      openModale();
+    });
 });
