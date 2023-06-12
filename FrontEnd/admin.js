@@ -28,5 +28,27 @@ document.addEventListener('DOMContentLoaded', function() {
     blackBar.appendChild(buttonPost);
     // Insérer la barre noire au début du corps du document
     document.body.prepend(blackBar);
+    // Inserer le logo stylot et le mot sous la photo
+    const introModif = document.querySelector('#introduction figure')
+    const divModifUn = document.createElement('div');
+    divModifUn.className = 'divModifUn';
+    const logoElementDeux = createModifierLogo();
+    const modifText = document.createElement('p');
+    modifText.innerText ="modifier";
+    divModifUn.appendChild(logoElementDeux);
+    divModifUn.appendChild(modifText);
+    introModif.appendChild(divModifUn);
+    // Inserer le logo stylo et le mot a coté du titre projet
+    const sectionPortfolio = document.querySelector('#portfolio')
+    const projetTitre = document.querySelector('#portfolio h2');
+    const spanModif = document.createElement('span');
+    spanModif.className = 'spanModif';
+    const logoElementTrois = createModifierLogo();
+    const modifText2 = document.createElement('p');
+    modifText2.innerText = 'modifier';
+    sectionPortfolio.appendChild(spanModif);
+    spanModif.appendChild(logoElementTrois);
+    spanModif.appendChild(modifText2);
+    projetTitre.appendChild(spanModif);
   }
 });

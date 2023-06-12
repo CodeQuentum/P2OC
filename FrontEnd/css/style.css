@@ -253,9 +253,29 @@ footer nav ul {
 .black-bar .fa-pen-to-square{
 	color: white;
 }
-  h2 span, h2 .fa-pen-to-square{
+.divModifUn{
+	display: flex;
+	flex-direction: row;
+	margin-left: 50px;
+	padding: 10px;
+}
+.divModifUn .fa-pen-to-square{
+	padding-right: 10px;
+}
+.spanModif {
+	display: inline-flex;
+	align-items: center;
 	color: black;
-	font-size: small;
+	font-weight: 400;
+	font-size: 14px;
 	font-family: 'Work Sans';
+	margin-left: 10px;
   }
-
+  
+  .spanModif i {
+	margin-right: 5px;
+  }
+  
+  .spanModif p {
+	margin: 0;
+  }
