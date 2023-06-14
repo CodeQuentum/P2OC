@@ -68,7 +68,6 @@ async function fetchData() {
     const response = await fetch('http://localhost:5678/api/works');
     if (response.ok) {
       data = await response.json(); 
-      console.log(data);
       displayModal() 
     } else {
       throw new Error('Erreur lors de la récupération des projets.');
@@ -101,7 +100,8 @@ function displayModal() {
     imageModal.className = "imageModal";
 
     const logoElement = document.createElement('i');
-    logoElement.className = 'fas fa-trash-alt logo'; // Ajoutez les classes CSS pour l'icône de suppression
+    logoElement.className = 'fas fa-trash-alt logo';
+    logoElement.classList.add("js-trash");
 
     const modalText = document.createElement('p');
     modalText.textContent = "éditer";
@@ -114,5 +114,13 @@ function displayModal() {
     jsImg.appendChild(modalFigure);
 }
 }; 
- 
-  });
+const closeModalButton = document.querySelector(".close-modal");
+closeModalButton.addEventListener("click", closeModal);
+
+function closeModal() {
+  const modalElement = document.getElementById("modale");
+  modalElement.classList.add("hidden");
+}
+const trashLogo = document.querySelectorAll(".js-trash");
+console.log(trashLogo);
+});

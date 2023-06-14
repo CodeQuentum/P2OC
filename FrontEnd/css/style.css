@@ -355,7 +355,11 @@ footer nav ul {
 	margin-top: 5px;
   }
   
-  .modale-content button{
+  .modale-content {
+	position: relative;
+  }  
+
+  .modale-content .btnPhoto{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -383,4 +387,21 @@ footer nav ul {
 	background-color: black;
 	color: #fff;
 	padding: 5px;
+  }
+
+  .close-modal {
+	display: flex;
+	justify-content: flex-end;
+	background: none;
+	border: none;
+	cursor: pointer;
+	width: 25px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+  }
+  
+  
+  .close-modal i {
+	margin-left: 5px;
   }
