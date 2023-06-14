@@ -78,19 +78,13 @@ async function fetchData() {
 };
 fetchData();
 
-function openModalFunction(event) {
-  event.preventDefault(); // Empêche le comportement par défaut du lien
-  const modalElement = document.getElementById("modale");
-  modalElement.classList.remove("hidden");
-  modalElement.classList.add("active");
-}
-
 function displayModal() {
   const jsImg = document.querySelector(".js-img");
 
   for (let i = 0; i < data.length; i++) {
     const modalFigure = document.createElement('figure');
     modalFigure.className = "modalFigure";
+    modalFigure.id = `figure-${data[i].id}`;
 
     const imageContainer = document.createElement('div');
     imageContainer.className = 'image-container';
@@ -113,7 +107,50 @@ function displayModal() {
 
     jsImg.appendChild(modalFigure);
 }
-}; 
+};
+
+function openModalFunction(event) {
+  event.preventDefault(); // Empêche le comportement par défaut du lien
+  const modalElement = document.getElementById("modale");
+  modalElement.classList.remove("hidden");
+  modalElement.classList.add("active");
+
+  const trashLogo = document.querySelectorAll('.js-trash');
+  trashLogo.forEach((logo) => {
+    logo.addEventListener('click', () => {
+      const figure = logo.closest('.modalFigure');
+      if (figure) {
+        const figureId = figure.getAttribute('id');
+  
+        // Extraire l'identifiant unique du projet à partir de l'ID de la figure
+        const projectId = figureId.split('-')[1];
+        const token = localStorage.getItem('token');
+        const headers = {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        };
+        
+        // Envoyer la requête Fetch pour supprimer le projet avec l'identifiant unique
+        fetch(`http://localhost:5678/api/works/${projectId}`, {
+          method: 'DELETE',
+          headers: headers,
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Supprimer la figure de la modale
+              figure.remove();
+            } else {
+              throw new Error('Erreur lors de la suppression du projet.');
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    });
+  });
+}
+
 const closeModalButton = document.querySelector(".close-modal");
 closeModalButton.addEventListener("click", closeModal);
 
@@ -121,6 +158,4 @@ function closeModal() {
   const modalElement = document.getElementById("modale");
   modalElement.classList.add("hidden");
 }
-const trashLogo = document.querySelectorAll(".js-trash");
-console.log(trashLogo);
 });
