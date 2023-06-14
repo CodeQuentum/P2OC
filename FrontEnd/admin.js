@@ -54,7 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
     spanModif.appendChild(modifText2);
     projetTitre.appendChild(spanModif);
   }
-});
+  const openModals = document.querySelectorAll(".js-modal");
+  openModals.forEach(function(openModal) {
+    openModal.addEventListener("click", openModalFunction);
+  });
+
 
   // Generer le contenu de la modale
 let data = [];
@@ -73,11 +77,16 @@ async function fetchData() {
     console.error(error);
   }
 };
-
 fetchData();
 
-function displayModal() {
+function openModalFunction(event) {
+  event.preventDefault(); // Empêche le comportement par défaut du lien
   const modalElement = document.getElementById("modale");
+  modalElement.classList.remove("hidden");
+  modalElement.classList.add("active");
+}
+
+function displayModal() {
   const jsImg = document.querySelector(".js-img");
 
   for (let i = 0; i < data.length; i++) {
@@ -106,4 +115,4 @@ function displayModal() {
 }
 }; 
  
-  
+  });
