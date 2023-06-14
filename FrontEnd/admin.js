@@ -54,17 +54,56 @@ document.addEventListener('DOMContentLoaded', function() {
     spanModif.appendChild(modifText2);
     projetTitre.appendChild(spanModif);
   }
+});
 
   // Generer le contenu de la modale
-  const jsModale = document.querySelectorAll(".js-modal");
-  const modale = document.getElementById("modale");
-  console.log(modale);
-  function openModale(){
-    modale.classList.add('active');
+let data = [];
+
+async function fetchData() {
+  try {
+    const response = await fetch('http://localhost:5678/api/works');
+    if (response.ok) {
+      data = await response.json(); 
+      console.log(data);
+      displayModal() 
+    } else {
+      throw new Error('Erreur lors de la récupération des projets.');
+    }
+  } catch (error) {
+    console.error(error);
   }
-  jsModale.forEach(function(element) {
-    element.addEventListener('click', function(event) {
-      event.preventDefault();
-      openModale();
-    });
-});
+};
+
+fetchData();
+
+function displayModal() {
+  const modalElement = document.getElementById("modale");
+  const jsImg = document.querySelector(".js-img");
+
+  for (let i = 0; i < data.length; i++) {
+    const modalFigure = document.createElement('figure');
+    modalFigure.className = "modalFigure";
+
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'image-container';
+
+    const imageModal = document.createElement('img');
+    imageModal.src = data[i].imageUrl;
+    imageModal.className = "imageModal";
+
+    const logoElement = document.createElement('i');
+    logoElement.className = 'fas fa-trash-alt logo'; // Ajoutez les classes CSS pour l'icône de suppression
+
+    const modalText = document.createElement('p');
+    modalText.textContent = "éditer";
+
+    imageContainer.appendChild(imageModal);
+    imageContainer.appendChild(logoElement);
+    modalFigure.appendChild(imageContainer);
+    modalFigure.appendChild(modalText);
+
+    jsImg.appendChild(modalFigure);
+}
+}; 
+ 
+  
