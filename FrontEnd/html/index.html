@@ -73,10 +73,30 @@
 		<button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
 		<h3>Galerie photo</h3>
 		<div class="js-img">
-			<!-- Contenu de la galerie -->
+			<!-- Contenu de la modale -->
 		</div>
 		<button class = "btnPhoto">Ajouter une photo</button>
 		<p class="clearGallery">supprimer la galerie</p>
+	</div>
+  </div>
+  <div id="addImageModale" class="modale hidden" aria-hidden="true" role="dialog">
+	<div class="modale-content">
+		<button class="close-modal2"><i class="fa-solid fa-xmark"></i></button>
+		<h3>Ajout photo</h3>
+		<p>
+			<label for="file" id="file-label">
+			  <i class="fa-regular fa-image" id="file-icon"></i>
+			  <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
+			  jpg, png : 4mo max
+			</label>
+		  </p>
+		<p>Titre</p>
+		<input type="text">
+		<p>Catégorie</p>
+		<select id="categorieSelect">
+
+		</select>
+		<button class = "btnAddPhoto">Valider</button>
 	</div>
   </div>
 <script src="../admin.js"></script>

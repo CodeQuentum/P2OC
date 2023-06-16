@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  // Generer le contenu de la modale
+// Génération du contenu de la modale
 let data = [];
 
 async function fetchData() {
@@ -68,15 +68,14 @@ async function fetchData() {
     const response = await fetch('http://localhost:5678/api/works');
     if (response.ok) {
       data = await response.json(); 
-      displayModal() 
+      displayModal();
     } else {
       throw new Error('Erreur lors de la récupération des projets.');
     }
   } catch (error) {
     console.error(error);
   }
-};
-fetchData();
+}
 
 function displayModal() {
   const jsImg = document.querySelector(".js-img");
@@ -106,9 +105,10 @@ function displayModal() {
     modalFigure.appendChild(modalText);
 
     jsImg.appendChild(modalFigure);
+  }
 }
-};
 
+// Fonction d'ouverture de la première modale
 function openModalFunction(event) {
   event.preventDefault(); // Empêche le comportement par défaut du lien
   const modalElement = document.getElementById("modale");
@@ -121,7 +121,7 @@ function openModalFunction(event) {
       const figure = logo.closest('.modalFigure');
       if (figure) {
         const figureId = figure.getAttribute('id');
-  
+
         // Extraire l'identifiant unique du projet à partir de l'ID de la figure
         const projectId = figureId.split('-')[1];
         const token = localStorage.getItem('token');
@@ -129,7 +129,7 @@ function openModalFunction(event) {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         };
-        
+
         // Envoyer la requête Fetch pour supprimer le projet avec l'identifiant unique
         fetch(`http://localhost:5678/api/works/${projectId}`, {
           method: 'DELETE',
@@ -149,13 +149,67 @@ function openModalFunction(event) {
       }
     });
   });
+
+  const secondModal = document.getElementById('addImageModale');
+  const buttonSecondModal = document.querySelector(".btnPhoto");
+  buttonSecondModal.addEventListener("click", openSecondModal);
+
+  fetch('http://localhost:5678/api/categories')
+    .then(response => response.json())
+    .then(data => {
+      generateCategoryOptions(data);
+    });
+
+  function generateCategoryOptions(categories) {
+    const selectElement = document.querySelector('#categorieSelect');
+
+    categories.forEach(category => {
+      const optionElement = document.createElement('option');
+      optionElement.value = category.id;
+      optionElement.textContent = category.name;
+      selectElement.appendChild(optionElement);
+    });
+  }
 }
 
-const closeModalButton = document.querySelector(".close-modal");
-closeModalButton.addEventListener("click", closeModal);
-
+// Fonction de fermeture de la première modale
 function closeModal() {
   const modalElement = document.getElementById("modale");
   modalElement.classList.add("hidden");
 }
+
+// Fonction d'ouverture de la deuxième modale
+function openSecondModal(event) {
+  event.preventDefault();
+  const modalElement = document.getElementById("modale");
+  modalElement.classList.add("hidden");
+
+  const secondModal = document.getElementById('addImageModale');
+  secondModal.classList.remove('hidden');
+  secondModal.classList.add('active');
+}
+
+// Fonction de fermeture de la deuxième modale
+function closeSecondModal() {
+  const secondModal = document.getElementById('addImageModale');
+  secondModal.classList.add('hidden');
+}
+
+// Appel de la fonction fetchData pour récupérer les données
+fetchData();
+
+// Liaison des événements
+const closeModalButton = document.querySelector(".close-modal");
+closeModalButton.addEventListener("click", closeModal);
+
+const closeModalButton2 = document.querySelector("#addImageModale .close-modal2");
+closeModalButton2.addEventListener("click", closeModal2);
+
+function closeModal2() {
+  const secondModal = document.getElementById("addImageModale");
+  secondModal.classList.add("hidden");
+}
+
+const openSecondModalButton = document.querySelector(".btnPhoto");
+openSecondModalButton.addEventListener("click", openSecondModal);
 });
