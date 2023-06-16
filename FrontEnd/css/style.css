@@ -456,6 +456,34 @@ p label{
 	order: 1;
   }
 
+  .inputaera{
+	display: flex;
+	flex-direction: column;
+  }
+  .inputaera p{
+	display: flex;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+  }
+  input[type="text"]{
+	width: 420px;
+	height: 51px;
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 14px;
+	color: #444444
+  }
+	select {
+		width: 420px;
+		height: 51px;
+		font-family: 'Work Sans';
+		font-weight: 400;
+		font-size: 14px;
+		color: #444444
+	}
+
   .close-modal {
 	display: flex;
 	justify-content: flex-end;
@@ -469,5 +497,20 @@ p label{
   }
 
   .close-modal i {
+	margin-left: 5px;
+  }
+  .close-modal2 {
+	display: flex;
+	justify-content: flex-end;
+	background: none;
+	border: none;
+	cursor: pointer;
+	width: 25px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+  }
+
+  .close-modal2 i {
 	margin-left: 5px;
   }
