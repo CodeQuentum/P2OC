@@ -389,6 +389,24 @@ footer nav ul {
 	padding: 5px;
   }
 /****** CSS MODAL 2 ******/
+.modale2-content {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	height: 550px;
+	max-width: 630px;
+	padding: 40px;
+	border-radius: 5px;
+  }
+  .modale2-content h3{
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+  }
 #addImageModale.active {
 	display: flex;
 	justify-content: center;
@@ -414,6 +432,7 @@ p label{
 	height: 169px;
 	background: #E8F1F7;
 	border-radius: 3px;
+	margin: 15px;
 }
 #addImageModale h3 + p {
 	margin-top: 8px;
@@ -456,16 +475,19 @@ p label{
 	order: 1;
   }
 
-  .inputaera{
+  .inputarea{
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
   }
-  .inputaera p{
+  .inputarea p{
 	display: flex;
 	font-family: 'Work Sans';
 	font-weight: 500;
 	font-size: 14px;
-	line-height: 16px;
+  }
+  p{
+	margin-left: 10px;
   }
   input[type="text"]{
 	width: 420px;
@@ -473,7 +495,8 @@ p label{
 	font-family: 'Work Sans';
 	font-weight: 400;
 	font-size: 14px;
-	color: #444444
+	color: #444444;
+	margin: 10px;
   }
 	select {
 		width: 420px;
@@ -481,8 +504,32 @@ p label{
 		font-family: 'Work Sans';
 		font-weight: 400;
 		font-size: 14px;
-		color: #444444
+		color: #444444;
+		margin: 10px;
+		}
+
+	.borderOnly{
+		border: 1px solid #B3B3B3;
+		margin-top: 60px;
+		margin-bottom: 20px;
 	}
+
+	.btnAddPhoto {
+		display: flex;
+		width: 237px;
+		height: 36px;
+		color: #fff;
+		background: #A7A7A7;
+		border-radius: 60px;
+		font-family: 'Syne';
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 17px;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		margin: 10px auto; 
+  	}
 
   .close-modal {
 	display: flex;
@@ -510,7 +557,18 @@ p label{
 	top: 10px;
 	right: 10px;
   }
-
+  .return {
+	display: flex;
+	justify-content: flex-start;
+	background: none;
+	border: none;
+	cursor: pointer;
+	width: 25px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+  }
+  
   .close-modal2 i {
 	margin-left: 5px;
   }

@@ -80,12 +80,13 @@
 	</div>
   </div>
   <div id="addImageModale" class="modale hidden" aria-hidden="true" role="dialog">
-	<div class="modale-content">
+	<div class="modale2-content">
 		<button class="close-modal2"><i class="fa-solid fa-xmark"></i></button>
+		<button class="return"><i class="fa-solid fa-arrow-left-long"></i></button>
 		<h3>Ajout photo</h3>
 		<p>
 			<label for="file" id="file-label">
-			  <i class="fa-regular fa-image" id="file-icon"></i>
+			  <i class="fa-solid fa-image" id="file-icon"></i>
 			  <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
 			  jpg, png : 4mo max
 			</label>
@@ -97,6 +98,7 @@
 			<select id="categorieSelect">
 
 			</select>
+			<div class="borderOnly"></div>
 			<button class = "btnAddPhoto">Valider</button>
 		</div>
 	</div>

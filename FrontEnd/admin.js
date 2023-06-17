@@ -189,11 +189,21 @@ function openSecondModal(event) {
   secondModal.classList.add('active');
 }
 
-// Fonction de fermeture de la deuxième modale
-function closeSecondModal() {
+// fonction pour revenir a la 1ere modale
+function retour(){
   const secondModal = document.getElementById('addImageModale');
+  const modalElement = document.getElementById("modale");
+  secondModal.classList.remove('active');
   secondModal.classList.add('hidden');
+  modalElement.classList.remove("hidden");
+  modalElement.classList.add("active");
 }
+const flecheRetour= document.querySelector(".return");
+flecheRetour.addEventListener('click', (event)=>{
+  event.preventDefault();
+  retour();
+});
+  
 
 // Appel de la fonction fetchData pour récupérer les données
 fetchData();
