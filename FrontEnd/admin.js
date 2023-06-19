@@ -235,18 +235,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Ajout de l'écouteur d'événement pour le bouton .btnAddPhoto
   const addButton = document.querySelector('.btnAddPhoto');
-  console.log(addButton);
-  const titleInput = document.querySelector('input[type="text"]');
+
+  const titleInput = document.querySelector('.inputarea input[type="text"]');
   const categorySelect = document.getElementById('categorieSelect');
   const token = localStorage.getItem('token');
-
+  
   addButton.addEventListener('click', () => {
     const fileInput = document.getElementById('file');
-
+    
     if (fileInput.files.length > 0 && titleInput.value !== '' && categorySelect.value !== '') {
       const file = fileInput.files[0];
       const formData = new FormData();
-
+    
       formData.append('image', file);
       formData.append('title', titleInput.value);
       formData.append('category', categorySelect.value);
