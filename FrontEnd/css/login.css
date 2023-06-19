@@ -34,10 +34,18 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+.selected{
+	font-weight: 600;
+}
 ol, ul {
 	list-style: none;
 }
-
+li a{
+	text-decoration: none;
+}
+li img{
+	scale: 0.6;
+}
 body {
 	max-width: 1140px;
 	margin:auto;
@@ -82,6 +90,7 @@ button{
 }
 form a{
     text-align: center;
+	color: black;
 }
 footer nav ul {
 	display: flex;

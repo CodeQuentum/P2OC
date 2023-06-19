@@ -10,6 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../css/style.css">
 	<script type="module" src="../scripts.js"></script>
+	<script src="../admin.js"></script>
 </head>
 <body>
 <header>
@@ -81,29 +82,27 @@
   </div>
   <div id="addImageModale" class="modale hidden" aria-hidden="true" role="dialog">
 	<div class="modale2-content">
-		<button class="close-modal2"><i class="fa-solid fa-xmark"></i></button>
-		<button class="return"><i class="fa-solid fa-arrow-left-long"></i></button>
-		<h3>Ajout photo</h3>
-		<p>
-			<label for="file" id="file-label">
-			  <i class="fa-solid fa-image" id="file-icon"></i>
-			  <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
-			  jpg, png : 4mo max
-			</label>
-		  </p>
-		<div class="inputarea">
-			<p>Titre</p>
-			<input type="text">
-			<p>Catégorie</p>
-			<select id="categorieSelect">
-
-			</select>
-			<div class="borderOnly"></div>
-			<button class = "btnAddPhoto">Valider</button>
-		</div>
+	  <button class="close-modal2"><i class="fa-solid fa-xmark"></i></button>
+	  <button class="return"><i class="fa-solid fa-arrow-left-long"></i></button>
+	  <h3>Ajout photo</h3>
+	  <div id="image-preview">
+		<label for="file" id="file-label">
+		  <i class="fa-solid fa-image" id="file-icon"></i>
+		  <input type="file" accept="image/*" name="image" id="file">
+		  jpg, png : 4mo max
+		</label>
+		<img src="" alt="" id="loadImage">
+	  </div>
+	  <div class="inputarea">
+		<p>Titre</p>
+		<input type="text">
+		<p>Catégorie</p>
+		<select id="categorieSelect"></select>
+		<div class="borderOnly"></div>
+		<button class="btnAddPhoto">Valider</button>
+	  </div>
 	</div>
   </div>
-<script src="../admin.js"></script>
 <script src="https://kit.fontawesome.com/2025918449.js" crossorigin="anonymous">
 </script>
 </body>

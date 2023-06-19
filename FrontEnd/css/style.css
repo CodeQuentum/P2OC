@@ -34,6 +34,12 @@ body {
 ol, ul {
 	list-style: none;
 }
+li a{
+	color:#000000;
+}
+li img{
+	scale: 0.6;
+}
 blockquote, q {
 	quotes: none;
 }
@@ -45,6 +51,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+a{
+	text-decoration: none;
 }
 /** end reset css**/
 body {
@@ -253,6 +262,10 @@ footer nav ul {
 .black-bar .fa-pen-to-square{
 	color: white;
 }
+a .js-modal{
+	color: #000000;
+}
+
 .divModifUn{
 	display: flex;
 	flex-direction: row;
@@ -391,8 +404,8 @@ footer nav ul {
 /****** CSS MODAL 2 ******/
 .modale2-content {
 	background-color: #fff;
-	display: flex;
-	flex-direction: column;
+	display: grid;
+  	grid-template-rows: auto 1fr auto;
 	position: relative;
 	height: 550px;
 	max-width: 630px;
@@ -420,6 +433,7 @@ footer nav ul {
 	align-items: center;
 	justify-content: center;
 	position: fixed;
+	align-items: flex-start;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -451,11 +465,29 @@ p label{
 	margin-bottom: 4px;
 	order: 1;
   }
+  .hidden {
+	display: none !important;
+  }
   
   input[type="file"] {
 	display: none;
   }
+  #image-preview {
+	width: 420px;
+	height: 169px;
+	background: #E8F1F7;
+	border-radius: 3px;
+	margin: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
   
+  #image-preview img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+  }
   #file-label::before {
 	margin-top: 20px;
 	content: "+ Ajouter photo";
@@ -489,7 +521,7 @@ p label{
   p{
 	margin-left: 10px;
   }
-  input[type="text"]{
+ .inputarea input[type="text"]{
 	width: 420px;
 	height: 51px;
 	font-family: 'Work Sans';
@@ -498,8 +530,8 @@ p label{
 	color: #444444;
 	margin: 10px;
   }
-	select {
-		width: 420px;
+	select{
+		width: 428px;
 		height: 51px;
 		font-family: 'Work Sans';
 		font-weight: 400;
@@ -530,6 +562,10 @@ p label{
 		text-align: center;
 		margin: 10px auto; 
   	}
+
+	.green{
+		background-color:#1D6154;
+	}
 
   .close-modal {
 	display: flex;
