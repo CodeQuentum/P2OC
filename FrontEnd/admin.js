@@ -140,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const trashLogo = document.querySelectorAll('.js-trash');
     trashLogo.forEach((logo) => {
-      logo.addEventListener('click', () => {
+      logo.addEventListener('click', (event) => {
+        event.preventDefault();
         const figure = logo.closest('.modalFigure');
         if (figure) {
           const figureId = figure.getAttribute('id');
@@ -243,7 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const categorySelect = document.getElementById('categorieSelect');
   const token = localStorage.getItem('token');
   
-  addButton.addEventListener('click', () => {
+  addButton.addEventListener('click', (event) => {
+    event.preventDefault();
     const fileInput = document.getElementById('file');
     
     if (fileInput.files.length > 0 && titleInput.value !== '' && categorySelect.value !== '') {

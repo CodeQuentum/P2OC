@@ -61,6 +61,7 @@ form{
 .loginFailed{
 	display: none;
 	color: red;
+	text-align: center;
 }
 
 .logs{
