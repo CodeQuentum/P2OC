@@ -4,23 +4,25 @@ document.addEventListener('DOMContentLoaded', function() {
     logoElement.classList.add('fas', 'fa-pen-to-square');
     return logoElement;
   }
+  
   const userId = JSON.parse(localStorage.getItem("userId"));
   const filtresSection = document.querySelector('.filtres');
+  
   if (userId === 1) {
     filtresSection.style.display = 'none';
 
-    // Créer le conteneur de la barre noire(et le contenu)
+    // Créer le conteneur de la barre noire (et le contenu)
     const blackBar = document.createElement('div');
     blackBar.classList.add('black-bar');
     const logoContainer = document.createElement('div');
     logoContainer.classList.add('logo-container');
     const logoElementUn = createModifierLogo();
     const blackBarText = document.createElement('p');
-    blackBarText.innerText =" Mode édition";
+    blackBarText.innerText = "Mode édition";
     const buttonPost = document.createElement('button');
-    buttonPost.type ="button";
-    buttonPost.innerHTML ="publier les changements";
-    buttonPost.className ="btnPost";
+    buttonPost.type = "button";
+    buttonPost.innerHTML = "publier les changements";
+    buttonPost.className = "btnPost";
 
     // Insérer dans la barre noire
     blackBar.appendChild(logoContainer);
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Insérer la barre noire au début du corps du document
     document.body.prepend(blackBar);
 
-    // Inserer le logo stylot et le mot sous la photo
+    // Insérer le logo stylot et le mot sous la photo
     const introModif = document.querySelector('#introduction figure')
     const divModifUn = document.createElement('div');
     divModifUn.className = 'divModifUn';
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     divModifUn.appendChild(modifText);
     introModif.appendChild(divModifUn);
 
-    // Inserer le logo stylo et le mot a coté du titre projet
+    // Insérer le logo stylo et le mot à côté du titre du projet
     const sectionPortfolio = document.querySelector('#portfolio')
     const projetTitre = document.querySelector('#portfolio h2');
     const spanModif = document.createElement('span');
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     spanModif.appendChild(modifText2);
     projetTitre.appendChild(spanModif);
   }
+
   const openModals = document.querySelectorAll(".js-modal");
   openModals.forEach(function(openModal) {
     openModal.addEventListener("click", openModalFunction);
@@ -74,6 +77,27 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
       console.error(error);
     }
+    fetch('http://localhost:5678/api/categories')
+    .then(response => response.json())
+    .then(data => {
+      const selectElement = document.querySelector('#categorieSelect');
+  
+      // Ajouter l'option vide en tant que premier élément
+      const placeholderOption = document.createElement('option');
+      placeholderOption.value = '';
+      selectElement.appendChild(placeholderOption);
+  
+      // Générer les autres options à partir des catégories
+      data.forEach(category => {
+        const optionElement = document.createElement('option');
+        optionElement.value = category.id;
+        optionElement.textContent = category.name;
+        selectElement.appendChild(optionElement);
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   function displayModal() {
@@ -153,27 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonSecondModal = document.querySelector(".btnPhoto");
     buttonSecondModal.addEventListener("click", openSecondModal);
 
-    fetch('http://localhost:5678/api/categories')
-    .then(response => response.json())
-    .then(data => {
-      const selectElement = document.querySelector('#categorieSelect');
-  
-      // Ajouter l'option vide en tant que premier élément
-      const placeholderOption = document.createElement('option');
-      placeholderOption.value = '';
-      selectElement.appendChild(placeholderOption);
-  
-      // Générer les autres options à partir des catégories
-      data.forEach(category => {
-        const optionElement = document.createElement('option');
-        optionElement.value = category.id;
-        optionElement.textContent = category.name;
-        selectElement.appendChild(optionElement);
-      });
-    })
-    .catch(error => {
-      console.error(error);
-    });
   }
 
   // Fonction de fermeture de la première modale
@@ -181,13 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalElement = document.getElementById("modale");
     modalElement.classList.add("hidden");
   }
-
+  
   // Fonction de fermeture de la deuxième modale
   function closeModal2() {
     const secondModal = document.getElementById("addImageModale");
     secondModal.classList.add("hidden");
   }
-
+  
   // Fonction d'ouverture de la deuxième modale
   function openSecondModal(event) {
     event.preventDefault();
@@ -282,4 +285,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const openSecondModalButton = document.querySelector(".btnPhoto");
   openSecondModalButton.addEventListener("click", openSecondModal);
+
+  // Fonction de fermeture de la première modale en cliquant en dehors
+function closeModalOnOutsideClick(event) {
+  const modalElement = document.getElementById("modale");
+  if (event.target === modalElement) {
+    closeModal();
+  }
+}
+function closeModalOnOutsideClick2(event) {
+  const modalElement = document.getElementById("addImageModale");
+  if (event.target === modalElement) {
+    closeModal2();
+  }
+}
+// Ajouter l'écouteur d'événement pour la fermeture de la modale en cliquant en dehors
+document.addEventListener("click", closeModalOnOutsideClick);
+document.addEventListener("click", closeModalOnOutsideClick2);
 });
